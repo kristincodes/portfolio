@@ -42,17 +42,6 @@ const parallaxDevice = (event: any) => {
   });
 }
 
-if (isMobile) {
-  onMounted(() => {
-    window.addEventListener('deviceorientation', parallaxDevice, true)
-  })
-}
-else {
-  onMounted(() => {
-    document.addEventListener("mousemove", parallaxMouse)
-  })
-}
-
 const openPortfolioItem = ref()
 const setOpenPortfolioItem = (id: number) => {
   if (openPortfolioItem.value == id) {
@@ -62,11 +51,39 @@ const setOpenPortfolioItem = (id: number) => {
     openPortfolioItem.value = id
   }
 }
+
+const reveal = ref(false)
+const revealCount = ref(3)
+const revealDone = ref(false)
+
+onMounted(() => {
+
+  if (isMobile) {
+    window.addEventListener('deviceorientation', parallaxDevice, true)
+  }
+  else {
+    document.addEventListener("mousemove", parallaxMouse)
+  }
+
+  const revealInt = setInterval(() => {
+    if (revealCount.value > 1) {
+      revealCount.value--
+    }
+    else {
+      clearInterval(revealInt)
+      reveal.value = true
+
+      setTimeout(() => {
+        revealDone.value = true
+      }, 1500);
+    }
+  }, 300)
+})
 </script>
 
 <template>
   <div class="page-wrap">
-    <main>
+    <main :class="{ done: revealDone }">
       <header>
         <h1>Kristin Meyer</h1>
         <nav>
@@ -96,22 +113,25 @@ const setOpenPortfolioItem = (id: number) => {
         </div>
       </footer>
     </main>
-    <aside>
-      <portfolio-item title="Kathmann Bau" :tags="['Nuxt', 'Wordpress']" @click="setOpenPortfolioItem(1)"
-                      :open="openPortfolioItem == 1">
+    <aside :class="{ done: revealDone }">
+      <portfolio-item title=" Kathmann Bau"
+                      desc="Dynamic website showcasing a construction company's services and references."
+                      :tags="['Nuxt', 'headless Wordpress', 'REST API', 'Responsive Webdesign', 'Animations']"
+                      @click="setOpenPortfolioItem(1)" :open="openPortfolioItem == 1" href="https://kathmann-bau.de/">
         <img src="@/assets/images/KM_Portfolio_Kath.jpg" alt="Website - Kathmann Bau" />
       </portfolio-item>
-      <portfolio-item title="Kathmann Bau" :tags="['Nuxt', 'Wordpress']" @click="setOpenPortfolioItem(2)"
-                      :open="openPortfolioItem == 2">
-        <img src="@/assets/images/KM_Portfolio_Kath.jpg" alt="Website - Kathmann Bau" />
+      <portfolio-item title="oui. studios" desc=""
+                      :tags="['Nuxt', 'headless Wordpress', 'REST API', 'Responsive Webdesign', 'Animations']"
+                      @click="setOpenPortfolioItem(2)" :open="openPortfolioItem == 2" href="https://oui-studios.de/">
+        <img src="@/assets/images/KM_portfolio_oui.jpg" alt="Website - oui. studios" />
       </portfolio-item>
-      <portfolio-item title="Kathmann Bau" :tags="['Nuxt', 'Wordpress']" @click="setOpenPortfolioItem(3)"
-                      :open="openPortfolioItem == 3">
-        <img src="@/assets/images/KM_Portfolio_Kath.jpg" alt="Website - Kathmann Bau" />
+      <portfolio-item title="Balgequartier" desc="" :tags="['Wordpress', 'HTML', 'CSS', 'Javascript']"
+                      @click="setOpenPortfolioItem(3)" :open="openPortfolioItem == 3" href="https://balgequartier.de/">
+        <img src="@/assets/images/KM_Portfolio_BQ.jpg" alt="Website - Balgequartier" />
       </portfolio-item>
-      <portfolio-item title="Kathmann Bau" :tags="['Nuxt', 'Wordpress']" @click="setOpenPortfolioItem(4)"
-                      :open="openPortfolioItem == 4">
-        <img src="@/assets/images/KM_Portfolio_Kath.jpg" alt="Website - Kathmann Bau" />
+      <portfolio-item :dev="true" title="DispoWorks" desc="" :tags="['Nuxt', 'Strapi', 'Ionic']"
+                      @click="setOpenPortfolioItem(4)" :open="openPortfolioItem == 4">
+        <img src="@/assets/images/KM_Portfolio_dispo.jpg" alt="Web App - DispoWorks" />
       </portfolio-item>
       <svg v-if="!isMobile" id="cursor" ref="cursor" xmlns="http://www.w3.org/2000/svg" xml:lang="en"
            xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 500 500" :style="{ top: mouseY, left: mouseX }">
@@ -127,6 +147,9 @@ const setOpenPortfolioItem = (id: number) => {
 
       </svg>
     </aside>
+    <div class="reveal" :class="{ show: reveal }">
+      <span class="reveal-count">{{ revealCount }}</span>
+    </div>
   </div>
 </template>
 
@@ -141,21 +164,40 @@ const setOpenPortfolioItem = (id: number) => {
   main {
     padding: 4rem;
     height: 100vh;
-    width: 75%;
+    width: 100%;
+    margin-right: -25%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
     transition: all 0.5s ease-out;
 
+    &.done {
+      width: 75%;
+      margin-right: 0;
+      transition: all 0.7s cubic-bezier(.02, .01, .47, 1);
+    }
+
     @media only screen and (max-width: 1200px) {
-      width: 66.666666%;
+      margin-right: -33.33333333%;
+
+      &.done {
+        width: 66.666666%;
+        margin-right: 0;
+        transition: all 0.7s cubic-bezier(.02, .01, .47, 1);
+      }
     }
 
     @media only screen and (max-width: 900px) {
+      margin-right: 0;
       width: 100%;
       padding: 2rem;
       height: auto;
+
+      &.done {
+        margin-right: 0;
+        width: 100%;
+      }
     }
 
     header {
@@ -250,9 +292,21 @@ const setOpenPortfolioItem = (id: number) => {
     flex-flow: wrap;
     transition: all 0.5s ease-out;
 
+    :deep(.portfolio-item) {
+      position: relative;
+      right: -100%;
+      transition: right 0.7s cubic-bezier(.02, .01, .47, 1) 0.35s;
+    }
+
+    &.done {
+      :deep(.portfolio-item) {
+        right: 0;
+      }
+    }
+
     @media only screen and (max-width: 1200px) {
       gap: 1rem;
-      width: 33.33333333%
+      width: 33.33333333%;
     }
 
     @media only screen and (max-width: 900px) {
@@ -262,9 +316,13 @@ const setOpenPortfolioItem = (id: number) => {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 2rem;
+
+      :deep(.portfolio-item) {
+        right: 0;
+      }
     }
 
-    @media only screen and (max-width: 500px) {
+    @media only screen and (max-width: 600px) {
       grid-template-columns: 1fr;
       overflow: hidden;
     }
@@ -309,10 +367,38 @@ const setOpenPortfolioItem = (id: number) => {
     }
   }
 
-
   @media only screen and (max-width: 500px) {
     .hide-xs {
       display: none;
+    }
+  }
+
+  .reveal {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: $black;
+    inset: 0;
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: width 1s cubic-bezier(.02, .01, .47, 1) 0.35s;
+
+    span {
+      color: $white;
+      font-size: 10vh;
+      font-weight: 700;
+      opacity: 1;
+      transition: opacit 0.35s cubic-bezier(.02, .01, .47, 1);
+    }
+
+    &.show {
+      width: 0;
+
+      span {
+        opacity: 0;
+      }
     }
   }
 }

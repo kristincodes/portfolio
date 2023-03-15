@@ -8,6 +8,10 @@ const props = defineProps({
 		type: Array,
 		required: true
 	},
+	desc: {
+		type: String,
+		required: true
+	},
 	href: {
 		type: String,
 		default: '#'
@@ -29,12 +33,16 @@ const props = defineProps({
 			<slot />
 		</div>
 		<div class="info">
+			<!-- <div class="description">
+										{{ desc }}
+									</div> -->
 			<div class="tags">
 				<span class="tag" v-for="tag in tags">{{ tag }}</span>
 			</div>
-			<div class="link-wrap">
+			<div v-if="!dev" class="link-wrap">
 				<a :href="href" target="_blank">Visit</a>
 			</div>
+			<div v-else>in development</div>
 		</div>
 	</div>
 </template>
@@ -42,13 +50,21 @@ const props = defineProps({
 <style scoped lang="scss">
 .portfolio-item {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr;
 	gap: 0;
+
+	@media only screen and (max-width: 900px) {
+		overflow: hidden;
+	}
+
+	@media only screen and (max-width: 600px) {
+		overflow: visible;
+	}
 
 	.image-wrap {
 		position: relative;
 		left: 0;
-		grid-column: 1 / 3;
+		grid-column: 1 / 4;
 		grid-row: 1 / 2;
 		transition: left 0.5s ease-in-out;
 		z-index: 1;
@@ -63,7 +79,7 @@ const props = defineProps({
 		}
 
 		&.open {
-			left: 50%;
+			left: 66.666666%;
 		}
 	}
 
@@ -73,13 +89,20 @@ const props = defineProps({
 		padding: 1rem;
 		background: $black;
 		color: $white;
-		grid-column: 1 / 2;
+		grid-column: 1 / 3;
 		grid-row: 1 / 2;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
+		font-weight: 300;
+
+		.description {
+			margin-bottom: 1rem;
+		}
 
 		.tags {
+			margin-bottom: auto;
+
 			.tag {
 				&:not(:last-child) {
 					&:after {
