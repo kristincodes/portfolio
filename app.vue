@@ -1,4 +1,13 @@
 <script setup lang="ts">
+useServerSeoMeta({
+  title: 'Kristin Meyer – Full-Stack Web Developer',
+  ogTitle: 'Kristin Meyer – Full-Stack Web Developer',
+  description: 'Experienced Full-Stack Developer with 8+ years of experience in web development. I help companies elevate their online presence and drive growth through dynamic, user-friendly web applications.',
+  ogDescription: 'Experienced Full-Stack Developer with 8+ years of experience in web development. I help companies elevate their online presence and drive growth through dynamic, user-friendly web applications.',
+  ogImage: 'https://kristin.codes/KM_OG-Image.jpg',
+  twitterCard: 'summary_large_image',
+})
+
 const { isMobile } = useDevice();
 
 const hiWrap = ref()
@@ -75,7 +84,7 @@ onMounted(() => {
         revealDone.value = true
       }, 200);
     }
-  }, 1000)
+  }, 700)
 })
 </script>
 
