@@ -33,11 +33,11 @@ const props = defineProps({
 			<slot />
 		</div>
 		<div class="info">
-			<!-- <div class="description">
-										{{ desc }}
-									</div> -->
 			<div class="tags">
 				<span class="tag" v-for="tag in tags">{{ tag }}</span>
+			</div>
+			<div class="description">
+				{{ desc }}
 			</div>
 			<div v-if="!dev" class="link-wrap">
 				<a :href="href" target="_blank">Visit</a>
@@ -50,7 +50,7 @@ const props = defineProps({
 <style scoped lang="scss">
 .portfolio-item {
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-columns: 1fr;
 	gap: 0;
 
 	@media only screen and (max-width: 900px) {
@@ -66,7 +66,7 @@ const props = defineProps({
 		left: 0;
 		grid-column: 1 / 4;
 		grid-row: 1 / 2;
-		transition: left 0.5s ease-in-out;
+		transition: left 0.5s cubic-bezier(.02, .01, .47, 1);
 		z-index: 1;
 
 		&:hover {
@@ -79,7 +79,7 @@ const props = defineProps({
 		}
 
 		&.open {
-			left: 66.666666%;
+			left: 100%;
 		}
 	}
 
@@ -89,19 +89,16 @@ const props = defineProps({
 		padding: 1rem;
 		background: $black;
 		color: $white;
-		grid-column: 1 / 3;
+		grid-column: 1 / 2;
 		grid-row: 1 / 2;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
-		font-weight: 300;
-
-		.description {
-			margin-bottom: 1rem;
-		}
+		font-weight: 250;
 
 		.tags {
-			margin-bottom: auto;
+			margin-bottom: 1rem;
+			font-size: 0.9rem;
 
 			.tag {
 				&:not(:last-child) {
@@ -110,6 +107,11 @@ const props = defineProps({
 					}
 				}
 			}
+		}
+
+		.description {
+			margin-bottom: auto;
+			line-height: 1.2;
 		}
 
 		.link-wrap {
@@ -128,7 +130,7 @@ const props = defineProps({
 					margin-left: 1rem;
 					position: relative;
 					right: 0;
-					transition: right 0.35s ease;
+					transition: right 0.35s cubic-bezier(.02, .01, .47, 1);
 				}
 
 				&:hover {

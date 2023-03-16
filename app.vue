@@ -66,18 +66,16 @@ onMounted(() => {
   }
 
   const revealInt = setInterval(() => {
-    if (revealCount.value > 1) {
-      revealCount.value--
-    }
-    else {
+    revealCount.value--
+    if (revealCount.value < 1) {
       clearInterval(revealInt)
       reveal.value = true
 
       setTimeout(() => {
         revealDone.value = true
-      }, 1500);
+      }, 200);
     }
-  }, 300)
+  }, 1000)
 })
 </script>
 
@@ -115,22 +113,26 @@ onMounted(() => {
     </main>
     <aside :class="{ done: revealDone }">
       <portfolio-item title=" Kathmann Bau"
-                      desc="Dynamic website showcasing a construction company's services and references."
-                      :tags="['Nuxt', 'headless Wordpress', 'REST API', 'Responsive Webdesign', 'Animations']"
+                      desc="Developed a dynamic website using Nuxt and a headless CMS for a construction company, showcasing their services and references with a modern design, responsive layout, and intuitive user interface."
+                      :tags="['Nuxt', 'Wordpress', 'REST API', 'Responsive Webdesign', 'Animations']"
                       @click="setOpenPortfolioItem(1)" :open="openPortfolioItem == 1" href="https://kathmann-bau.de/">
         <img src="@/assets/images/KM_Portfolio_Kath.jpg" alt="Website - Kathmann Bau" />
       </portfolio-item>
-      <portfolio-item title="oui. studios" desc=""
-                      :tags="['Nuxt', 'headless Wordpress', 'REST API', 'Responsive Webdesign', 'Animations']"
+      <portfolio-item title="oui. studios"
+                      desc="Built a responsive and dynamic website for my agency using Nuxt. The website showcases the agency's references and services with engaging animations and transitions. The site is easy to update with new references and case studies."
+                      :tags="['Nuxt', 'Wordpress', 'REST API', 'Responsive Webdesign', 'Animations']"
                       @click="setOpenPortfolioItem(2)" :open="openPortfolioItem == 2" href="https://oui-studios.de/">
         <img src="@/assets/images/KM_portfolio_oui.jpg" alt="Website - oui. studios" />
       </portfolio-item>
-      <portfolio-item title="Balgequartier" desc="" :tags="['Wordpress', 'HTML', 'CSS', 'Javascript']"
-                      @click="setOpenPortfolioItem(3)" :open="openPortfolioItem == 3" href="https://balgequartier.de/">
-        <img src="@/assets/images/KM_Portfolio_BQ.jpg" alt="Website - Balgequartier" />
+      <portfolio-item title="OTC International"
+                      desc="Developed a REST API and database for OTC, complete with data batch processing for optimal performance. This has enabled OTC to effortlessly upload large data catalogs via a user-friendly interface and seamlessly integrate this data into their website."
+                      :tags="['Node', 'Express', 'MongoDB']" @click="setOpenPortfolioItem(3)"
+                      :open="openPortfolioItem == 3" href="https://otc-international.eu/">
+        <img src="@/assets/images/KM_Portfolio_otc.jpg" alt="Website - OTC International" />
       </portfolio-item>
-      <portfolio-item :dev="true" title="DispoWorks" desc="" :tags="['Nuxt', 'Strapi', 'Ionic']"
-                      @click="setOpenPortfolioItem(4)" :open="openPortfolioItem == 4">
+      <portfolio-item :dev="true" title="DispoWorks"
+                      desc="Designed and developed a web application and mobile app for scaffolding companies using Nuxt, Strapi and Ionic. The system simplifies crew and resource management, enabling real-time progress tracking and improved productivity."
+                      :tags="['Nuxt', 'Strapi', 'Ionic']" @click="setOpenPortfolioItem(4)" :open="openPortfolioItem == 4">
         <img src="@/assets/images/KM_Portfolio_dispo.jpg" alt="Web App - DispoWorks" />
       </portfolio-item>
       <svg v-if="!isMobile" id="cursor" ref="cursor" xmlns="http://www.w3.org/2000/svg" xml:lang="en"
@@ -148,7 +150,9 @@ onMounted(() => {
       </svg>
     </aside>
     <div class="reveal" :class="{ show: reveal }">
-      <span class="reveal-count">{{ revealCount }}</span>
+      <span class="reveal-count" :class="{ show: revealCount == 3 }">3</span>
+      <span class="reveal-count" :class="{ show: revealCount == 2 }">2</span>
+      <span class="reveal-count" :class="{ show: revealCount == 1 }">1</span>
     </div>
   </div>
 </template>
@@ -175,7 +179,7 @@ onMounted(() => {
     &.done {
       width: 75%;
       margin-right: 0;
-      transition: all 0.7s cubic-bezier(.02, .01, .47, 1);
+      transition: all 1.35s cubic-bezier(.02, .01, .47, 1);
     }
 
     @media only screen and (max-width: 1200px) {
@@ -183,8 +187,6 @@ onMounted(() => {
 
       &.done {
         width: 66.666666%;
-        margin-right: 0;
-        transition: all 0.7s cubic-bezier(.02, .01, .47, 1);
       }
     }
 
@@ -295,7 +297,7 @@ onMounted(() => {
     :deep(.portfolio-item) {
       position: relative;
       right: -100%;
-      transition: right 0.7s cubic-bezier(.02, .01, .47, 1) 0.35s;
+      transition: right 1s cubic-bezier(.02, .01, .47, 1) 0.35s;
     }
 
     &.done {
@@ -386,11 +388,16 @@ onMounted(() => {
     transition: width 1s cubic-bezier(.02, .01, .47, 1) 0.35s;
 
     span {
+      position: absolute;
       color: $white;
       font-size: 10vh;
       font-weight: 700;
-      opacity: 1;
-      transition: opacit 0.35s cubic-bezier(.02, .01, .47, 1);
+      opacity: 0;
+      transition: opacity 0.25s cubic-bezier(.02, .01, .47, 1);
+
+      &.show {
+        opacity: 1;
+      }
     }
 
     &.show {
