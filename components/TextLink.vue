@@ -3,13 +3,17 @@ const props = defineProps({
 	href: {
 		type: String,
 		required: true
+	},
+	blank: {
+		type: Boolean,
+		default: false
 	}
 })
 </script>
 
 <template>
 	<div class="text-link">
-		<a :href="href">
+		<a :href="href" :target="blank ? '_blank' : '_self'">
 			<span>
 				<slot />
 			</span>

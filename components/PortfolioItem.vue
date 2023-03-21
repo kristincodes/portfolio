@@ -64,6 +64,7 @@ const props = defineProps({
 		grid-row: 1 / 2;
 		transition: left 0.5s cubic-bezier(.02, .01, .47, 1);
 		z-index: 1;
+		background: $black;
 
 		&:hover {
 			cursor: pointer;
@@ -74,6 +75,12 @@ const props = defineProps({
 			width: 100%;
 			height: 100%;
 			object-fit: cover;
+			opacity: 0;
+			transition: opacity 0.5s cubic-bezier(.02, .01, .47, 1);
+
+			&.loaded {
+				opacity: 1;
+			}
 		}
 
 		&.open {

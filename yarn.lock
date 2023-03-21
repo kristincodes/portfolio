@@ -909,7 +909,7 @@
     unimport "^2.2.4"
     untyped "^1.2.2"
 
-"@nuxt/kit@^3.0.0-rc.13":
+"@nuxt/kit@^3.0.0-rc.13", "@nuxt/kit@^3.1.2":
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/@nuxt/kit/-/kit-3.3.1.tgz#93e02a41d9adc7369d704deb88ae143c29554a4e"
   integrity sha512-zb7/2FUIB1g7nl6K6qozUzfG5uu4yrs9TQjZvpASnPBZ/x1EuJX5k3AA71hMMIVBEX9Adxvh9AuhDEHE5W26Zg==
@@ -3494,6 +3494,14 @@ nuxi@3.2.3:
   optionalDependencies:
     fsevents "~2.3.2"
 
+nuxt3-lazy-load@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/nuxt3-lazy-load/-/nuxt3-lazy-load-1.0.4.tgz#1c5af056d8a980ecc6e0509146350a97487b1b52"
+  integrity sha512-2jFEpRe4Zfue9iOts0lgFV9PWpiShjJXS0v7aYXV/3tz0cRi1GvIovSMgH/q645XSIDXpqBNHD41aXOqVdb4Ug==
+  dependencies:
+    "@nuxt/kit" "^3.1.2"
+    vite-plugin-replace "^0.1.1"
+
 nuxt@^3.2.3:
   version "3.2.3"
   resolved "https://registry.yarnpkg.com/nuxt/-/nuxt-3.2.3.tgz#644c407ef62ef4df0327a74f7c101d18f1708d2f"
@@ -4752,6 +4760,11 @@ vite-plugin-checker@^0.5.6:
     vscode-languageserver "^7.0.0"
     vscode-languageserver-textdocument "^1.0.1"
     vscode-uri "^3.0.2"
+
+vite-plugin-replace@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/vite-plugin-replace/-/vite-plugin-replace-0.1.1.tgz#d9fdd04ac98d4d2552ef9ff3d6c2768e825c8562"
+  integrity sha512-v+okl3JNt2pf1jDYijw+WPVt6h9FWa/atTi+qnSFBqmKThLTDhlesx0r3bh+oFPmxRJmis5tNx9HtN6lGFoqWg==
 
 "vite@^3.0.0 || ^4.0.0", vite@~4.1.4:
   version "4.1.4"

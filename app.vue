@@ -96,7 +96,7 @@ onMounted(() => {
         <nav>
           <ul>
             <li>
-              <text-link href="#">LinkedIn</text-link>
+              <text-link href="https://www.linkedin.com/in/kristin-codes/" blank>LinkedIn</text-link>
             </li>
             <li>
               <text-link href="mailto:hi@kristin.codes">hi@kristin.codes</text-link>
@@ -116,7 +116,7 @@ onMounted(() => {
           applications that help companies boost their online presence and drive growth.
         </div>
         <div class="info tech hide-xs">
-          <text-link href="#">Built with Nuxt</text-link>
+          <text-link href="https://github.com/kristincodes" blank>Built with Nuxt</text-link>
         </div>
       </footer>
     </main>
@@ -258,7 +258,7 @@ onMounted(() => {
       span {
         font-weight: 700;
         font-size: 12vw;
-        transition: all 0.5s ease-out;
+        transition: all 0.5s cubic-bezier(.02, .01, .47, 1);
         line-height: 1.2;
 
         @media only screen and (max-width: 900px) {
@@ -275,8 +275,12 @@ onMounted(() => {
         height: auto;
         position: relative;
         left: -9vw;
+        opacity: 0;
+        transition: all 0.5s cubic-bezier(.02, .01, .47, 1);
 
-        transition: all 0.5s ease-out;
+        &.loaded {
+          opacity: 1;
+        }
 
         @media only screen and (max-width: 900px) {
           width: 36vw;

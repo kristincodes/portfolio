@@ -8,6 +8,11 @@ export default defineNuxtConfig({
 	},
 	modules: [
 		'@nuxtjs/device',
+		['nuxt3-lazy-load', {
+			loadingClass: 'loading',
+			loadedClass: 'loaded',
+			appendClass: false,
+		}]
 	],
 	css: ['modern-normalize/modern-normalize.css', '@/assets/styles/global.scss'],
 	vite: {
