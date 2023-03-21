@@ -111,11 +111,11 @@ onMounted(() => {
         </div>
       </section>
       <footer>
-        <div class="info">
-          Full-Stack Web Developer<br>
-          from Bremen
+        <div class="info desc">
+          I'm a Full-Stack Web Developer from Bremen with 8+ years of experience. I create dynamic and user-friendly web
+          applications that help companies boost their online presence and drive growth.
         </div>
-        <div class="info hide-xs">
+        <div class="info tech hide-xs">
           <text-link href="#">Built with Nuxt</text-link>
         </div>
       </footer>
@@ -178,7 +178,7 @@ onMounted(() => {
     padding: 4rem;
     height: 100vh;
     width: 100%;
-    margin-right: -25%;
+    margin-right: -33.33333333%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -186,28 +186,39 @@ onMounted(() => {
     transition: all 0.5s ease-out;
 
     &.done {
-      width: 75%;
+      width: 66.666666666%;
       margin-right: 0;
       transition: all 1.35s cubic-bezier(.02, .01, .47, 1);
     }
 
     @media only screen and (max-width: 1200px) {
-      margin-right: -33.33333333%;
+      margin-right: -40%;
+      padding: 2rem;
 
       &.done {
-        width: 66.666666%;
+        width: 60%;
+        margin-right: 0;
       }
     }
 
+    // @media only screen and (max-width: 1200px) {
+    //   margin-right: 0;
+    //   width: 50%;
+
+    //   &.done {
+    //     margin-right: 0;
+    //     width: 50%;
+    //   }
+    // }
+
     @media only screen and (max-width: 900px) {
-      margin-right: 0;
-      width: 100%;
-      padding: 2rem;
       height: auto;
+      width: 100%;
+      margin-right: 0;
 
       &.done {
-        margin-right: 0;
         width: 100%;
+        margin-right: 0;
       }
     }
 
@@ -248,6 +259,7 @@ onMounted(() => {
         font-weight: 700;
         font-size: 12vw;
         transition: all 0.5s ease-out;
+        line-height: 1.2;
 
         @media only screen and (max-width: 900px) {
           font-size: 20vw;
@@ -283,17 +295,39 @@ onMounted(() => {
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
+      gap: 4rem;
 
-      @media only screen and (max-width: 500px) {
+      @media only screen and (max-width: 1200px) {
+        max-width: calc(60vw - 4rem);
         flex-direction: column;
         gap: 1rem;
         align-items: flex-start;
+      }
+
+      @media only screen and (max-width: 900px) {
+        max-width: initial;
+      }
+
+      .desc {
+        max-width: 36rem;
+
+        @media only screen and (max-width: 900px) {
+          max-width: 80%;
+        }
+
+        @media only screen and (max-width: 500px) {
+          max-width: initial;
+        }
+      }
+
+      .tech {
+        white-space: nowrap;
       }
     }
   }
 
   aside {
-    width: 25%;
+    width: 33.33333333%;
     height: 100vh;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -316,26 +350,30 @@ onMounted(() => {
     }
 
     @media only screen and (max-width: 1200px) {
-      gap: 1rem;
-      width: 33.33333333%;
+      gap: 2rem;
+      width: 40%;
     }
 
     @media only screen and (max-width: 900px) {
       width: 100%;
-      padding: 0 2rem 2rem;
-      height: auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 2rem;
+      right: 0;
+      height: auto;
+      overflow: hidden;
 
       :deep(.portfolio-item) {
         right: 0;
       }
     }
 
-    @media only screen and (max-width: 600px) {
+    @media only screen and (max-width: 700px) {
       grid-template-columns: 1fr;
-      overflow: hidden;
+      padding: 0 2rem 2rem;
+    }
+
+    @media only screen and (max-width: 500px) {
+      padding: 0;
     }
 
     svg#cursor {
@@ -369,16 +407,16 @@ onMounted(() => {
 
     @keyframes rotation {
       from {
-        transform: rotate(0deg);
+        transform: rotate(359deg);
       }
 
       to {
-        transform: rotate(359deg);
+        transform: rotate(0deg);
       }
     }
   }
 
-  @media only screen and (max-width: 500px) {
+  @media only screen and (max-width: 900px) {
     .hide-xs {
       display: none;
     }

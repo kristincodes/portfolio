@@ -53,12 +53,8 @@ const props = defineProps({
 	grid-template-columns: 1fr;
 	gap: 0;
 
-	@media only screen and (max-width: 900px) {
+	@media only screen and (max-width: 1200px) {
 		overflow: hidden;
-	}
-
-	@media only screen and (max-width: 600px) {
-		overflow: visible;
 	}
 
 	.image-wrap {
@@ -76,6 +72,8 @@ const props = defineProps({
 		:deep(img) {
 			display: block;
 			width: 100%;
+			height: 100%;
+			object-fit: cover;
 		}
 
 		&.open {
@@ -86,7 +84,7 @@ const props = defineProps({
 
 	.info {
 		height: 100%;
-		padding: 1rem;
+		padding: 2rem;
 		background: $black;
 		color: $white;
 		grid-column: 1 / 2;
@@ -96,9 +94,15 @@ const props = defineProps({
 		justify-content: space-between;
 		font-weight: 250;
 
+		@media only screen and (max-width: 500px) {
+			// padding: 1rem;
+		}
+
 		.tags {
 			margin-bottom: 1rem;
-			font-size: 0.9rem;
+			font-size: 1rem;
+			font-weight: 600;
+			letter-spacing: 0.075em;
 
 			.tag {
 				&:not(:last-child) {
@@ -111,10 +115,11 @@ const props = defineProps({
 
 		.description {
 			margin-bottom: auto;
-			line-height: 1.2;
 		}
 
 		.link-wrap {
+			margin-top: 1rem;
+
 			a {
 				color: $white;
 				text-decoration: none;

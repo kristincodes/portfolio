@@ -21,6 +21,7 @@ const props = defineProps({
 .text-link {
 	display: inline-block;
 	position: relative;
+	line-height: 1;
 
 	&:before {
 		content: "";
