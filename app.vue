@@ -70,16 +70,22 @@ onMounted(() => {
   }, 700)
 })
 
-const isIE = () => {
-  var userAgent = navigator.userAgent;
-  return /MSIE|Trident/.test(userAgent);
-}
+const ie = ref(false)
 
-console.log('Hi!✌🏻')
+if (process.client) {
+  const isIE = () => {
+    var userAgent = navigator.userAgent;
+    return /MSIE|Trident/.test(userAgent);
+  }
+
+  ie.value = isIE()
+
+  console.log('Hi!✌🏻')
+}
 </script>
 
 <template>
-  <div v-if="!isIE()" class="page-wrap">
+  <div v-if="!ie" class="page-wrap">
     <main :class="{ done: revealDone }">
       <header>
         <h1>Kristin Meyer</h1>
