@@ -8,10 +8,10 @@ useServerSeoMeta({
   twitterCard: 'summary_large_image',
 })
 
-const { isMobile } = useDevice();
+const { isDesktop } = useDevice();
 
+// ----------------------------------------- custom cursor & hi movement
 const hiWrap = ref()
-const cursor = ref()
 const mouseX = ref()
 const mouseY = ref()
 const parallaxMouse = (event: any) => {
@@ -35,22 +35,7 @@ const parallaxMouse = (event: any) => {
   }
 }
 
-const parallaxDevice = (event: any) => {
-  hiWrap.value.querySelectorAll("span").forEach((shift: any) => {
-    const x = (window.innerWidth - event.beta * 20) / 90;
-    const y = (window.innerHeight - event.gamma * 20) / 90;
-
-    shift.style.transform = `translateX(${x}px) translateY(${y}px)`;
-  });
-
-  hiWrap.value.querySelectorAll("img").forEach((shift: any) => {
-    const x = (window.innerWidth - event.beta * 20) / 60;
-    const y = (window.innerHeight - event.gamma * 20) / 60;
-
-    shift.style.transform = `translateX(${x}px) translateY(${y}px)`;
-  });
-}
-
+// ----------------------------------------- portfolio items
 const openPortfolioItem = ref()
 const setOpenPortfolioItem = (id: number) => {
   if (openPortfolioItem.value == id) {
@@ -61,16 +46,14 @@ const setOpenPortfolioItem = (id: number) => {
   }
 }
 
+// ----------------------------------------- page reveal
 const reveal = ref(false)
 const revealCount = ref(3)
 const revealDone = ref(false)
 
+// ----------------------------------------- init
 onMounted(() => {
-
-  if (isMobile) {
-    window.addEventListener('deviceorientation', parallaxDevice, true)
-  }
-  else {
+  if (isDesktop) {
     document.addEventListener("mousemove", parallaxMouse)
   }
 
@@ -86,10 +69,17 @@ onMounted(() => {
     }
   }, 700)
 })
+
+const isIE = () => {
+  var userAgent = navigator.userAgent;
+  return /MSIE|Trident/.test(userAgent);
+}
+
+console.log('Hi!✌🏻')
 </script>
 
 <template>
-  <div class="page-wrap">
+  <div v-if="!isIE()" class="page-wrap">
     <main :class="{ done: revealDone }">
       <header>
         <h1>Kristin Meyer</h1>
@@ -115,13 +105,13 @@ onMounted(() => {
           I'm a Full-Stack Web Developer from Bremen with 8+ years of experience. I create dynamic and user-friendly web
           applications that help companies boost their online presence and drive growth.
         </div>
-        <div class="info tech hide-xs">
+        <div class="info tech">
           <text-link href="https://github.com/kristincodes" blank>Built with Nuxt</text-link>
         </div>
       </footer>
     </main>
     <aside :class="{ done: revealDone }">
-      <portfolio-item title=" Kathmann Bau"
+      <portfolio-item class="first" title=" Kathmann Bau"
                       desc="Developed a dynamic website using Nuxt and a headless CMS for a construction company, showcasing their services and references with a modern design, responsive layout, and intuitive user interface."
                       :tags="['Nuxt', 'Wordpress', 'REST API', 'Responsive Webdesign', 'Animations']"
                       @click="setOpenPortfolioItem(1)" :open="openPortfolioItem == 1" href="https://kathmann-bau.de/">
@@ -139,12 +129,18 @@ onMounted(() => {
                       :open="openPortfolioItem == 3" href="https://otc-international.eu/">
         <img src="@/assets/images/KM_Portfolio_otc.jpg" alt="Website - OTC International" />
       </portfolio-item>
-      <portfolio-item :dev="true" title="DispoWorks"
+      <portfolio-item class="last" :dev="true" title="DispoWorks"
                       desc="Designed and developed a web application and mobile app for scaffolding companies using Nuxt, Strapi and Ionic. The system simplifies crew and resource management, enabling real-time progress tracking and improved productivity."
                       :tags="['Nuxt', 'Strapi', 'Ionic']" @click="setOpenPortfolioItem(4)" :open="openPortfolioItem == 4">
         <img src="@/assets/images/KM_Portfolio_dispo.jpg" alt="Web App - DispoWorks" />
       </portfolio-item>
-      <svg v-if="!isMobile" id="cursor" ref="cursor" xmlns="http://www.w3.org/2000/svg" xml:lang="en"
+      <div class="arrow-up">
+        <img src="@/assets/images/KM_arrow_up_white.svg" alt="Arrow Up" />
+      </div>
+      <div class="arrow-down">
+        <img src="@/assets/images/KM_arrow_down_white.svg" alt="Arrow Down" />
+      </div>
+      <svg v-if="isDesktop" id="cursor" xmlns="http://www.w3.org/2000/svg" xml:lang="en"
            xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 500 500" :style="{ top: mouseY, left: mouseX }">
         <title>Portfolio Item Hover Text</title>
         <defs>
@@ -155,7 +151,6 @@ onMounted(() => {
           <textPath xlink:href="#textcircle" aria-label="Take a closer look." textLength="942">Take a closer look.&nbsp;
           </textPath>
         </text>
-
       </svg>
     </aside>
     <div class="reveal" :class="{ show: reveal }">
@@ -163,6 +158,9 @@ onMounted(() => {
       <span class="reveal-count" :class="{ show: revealCount == 2 }">2</span>
       <span class="reveal-count" :class="{ show: revealCount == 1 }">1</span>
     </div>
+  </div>
+  <div v-else class="ie">
+    Bold browser choice.
   </div>
 </template>
 
@@ -200,16 +198,6 @@ onMounted(() => {
         margin-right: 0;
       }
     }
-
-    // @media only screen and (max-width: 1200px) {
-    //   margin-right: 0;
-    //   width: 50%;
-
-    //   &.done {
-    //     margin-right: 0;
-    //     width: 50%;
-    //   }
-    // }
 
     @media only screen and (max-width: 900px) {
       height: auto;
@@ -339,7 +327,7 @@ onMounted(() => {
     flex-direction: column;
     gap: 2rem;
     flex-flow: wrap;
-    transition: all 0.5s ease-out;
+    transition: all 0.5s cubic-bezier(.02, .01, .47, 1);
 
     :deep(.portfolio-item) {
       position: relative;
@@ -380,6 +368,38 @@ onMounted(() => {
       padding: 0;
     }
 
+    .portfolio-item.first,
+    .portfolio-item.last {
+      z-index: 2;
+    }
+
+    .arrow-down,
+    .arrow-up {
+      position: fixed;
+      right: 4rem;
+      display: flex;
+      justify-content: center;
+      z-index: 1;
+      mix-blend-mode: difference;
+
+      @media only screen and (max-width: 900px) {
+        display: none;
+      }
+
+      img {
+        width: 1rem;
+        height: auto;
+      }
+    }
+
+    .arrow-up {
+      top: 4rem;
+    }
+
+    .arrow-down {
+      bottom: 4rem;
+    }
+
     svg#cursor {
       width: 100px;
       position: absolute;
@@ -396,16 +416,22 @@ onMounted(() => {
       }
 
       text {
-        font-size: 4em;
+        font-size: 1em;
         font-weight: 700;
         fill: rgb(255, 255, 255);
         text-transform: uppercase;
+        transition: font-size 0.5s;
+        letter-spacing: 0.15em;
       }
     }
 
     &:hover {
       svg#cursor {
         opacity: 1;
+
+        text {
+          font-size: 4em;
+        }
       }
     }
 
@@ -417,12 +443,6 @@ onMounted(() => {
       to {
         transform: rotate(0deg);
       }
-    }
-  }
-
-  @media only screen and (max-width: 900px) {
-    .hide-xs {
-      display: none;
     }
   }
 
@@ -459,5 +479,11 @@ onMounted(() => {
       }
     }
   }
+}
+
+.ie {
+  padding: 50px;
+  text-align: center;
+  font-size: 20px;
 }
 </style>
