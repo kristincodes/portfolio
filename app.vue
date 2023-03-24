@@ -30,8 +30,14 @@ const parallaxMouse = (event: any) => {
       shift.style.transform = `translateX(${x}px) translateY(${y}px)`;
     });
 
-    mouseY.value = (event.clientY / 16) - (42 / 16) + 'rem'
-    mouseX.value = (event.clientX / 16) - (47 / 16) + 'rem'
+    if (window.innerWidth < 2000) {
+      mouseY.value = (event.clientY / 16) - (42 / 16) + 'rem'
+      mouseX.value = (event.clientX / 16) - (47 / 16) + 'rem'
+    }
+    else {
+      mouseY.value = (event.clientY / 24) - (42 / 24) + 'rem'
+      mouseX.value = (event.clientX / 24) - (47 / 24) + 'rem'
+    }
   }
 }
 
@@ -407,7 +413,7 @@ if (process.client) {
     }
 
     svg#cursor {
-      width: 100px;
+      width: 6.25rem;
       position: absolute;
       animation: rotation 7.5s infinite linear;
       pointer-events: none;
@@ -437,6 +443,10 @@ if (process.client) {
 
         text {
           font-size: 4em;
+
+          @media only screen and (min-width: 2000px) {
+            font-size: 2rem;
+          }
         }
       }
     }
