@@ -135,7 +135,7 @@ if (process.client) {
                       desc="Built a responsive and dynamic website for my agency using Nuxt. The website showcases the agency's references and services with engaging animations and transitions. The site is easy to update with new references and case studies."
                       :tags="['Nuxt', 'Wordpress', 'REST API', 'Responsive Webdesign', 'Animations']"
                       @click="setOpenPortfolioItem(2)" :open="openPortfolioItem == 2" href="https://oui-studios.de/">
-        <nuxt-img src="/images/KM_portfolio_oui.jpg" alt="Website - oui. studios" width="480" height="360" format="webp"
+        <nuxt-img src="/images/KM_Portfolio_oui.jpg" alt="Website - oui. studios" width="480" height="360" format="webp"
                   sizes="sm:100vw md:50vw lg:500px xl:1000px" />
       </portfolio-item>
       <portfolio-item title="OTC International"
