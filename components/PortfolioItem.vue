@@ -75,12 +75,6 @@ const props = defineProps({
 			width: 100%;
 			height: 100%;
 			object-fit: cover;
-			opacity: 0;
-			transition: opacity 0.5s cubic-bezier(.02, .01, .47, 1);
-
-			&.loaded {
-				opacity: 1;
-			}
 		}
 
 		&.open {
@@ -137,7 +131,7 @@ const props = defineProps({
 				letter-spacing: 0.075em;
 
 				&:after {
-					content: url('@/assets/images/KM_arrow_long_white.svg');
+					content: url('/images/KM_arrow_long_white.svg');
 					width: 2.75rem;
 					margin-left: 1rem;
 					position: relative;
