@@ -4,6 +4,9 @@ export default defineNuxtConfig({
 	app: {
 		head: {
 			title: 'Kristin Meyer – Full-Stack Web Developer',
+			htmlAttrs: {
+				lang: "en",
+			}
 		}
 	},
 	modules: [
