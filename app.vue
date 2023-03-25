@@ -119,7 +119,7 @@ if (process.client) {
           applications that help companies boost their online presence and drive growth.
         </div>
         <div class="info tech">
-          <text-link href="https://github.com/kristincodes" blank>Built with Nuxt</text-link>
+          <text-link href="https://github.com/kristincodes/portfolio" blank>Built with Nuxt</text-link>
         </div>
       </footer>
     </main>
