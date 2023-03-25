@@ -88,7 +88,7 @@ const props = defineProps({
 		}
 
 		&:after {
-			content: url('/images/KM_arrow_forward_white.svg');
+			content: url('@/static/images/KM_arrow_forward_white.svg');
 			width: 0.75rem;
 			position: absolute;
 			right: -1rem;

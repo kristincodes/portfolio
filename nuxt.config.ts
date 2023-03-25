@@ -10,13 +10,11 @@ export default defineNuxtConfig({
 	},
 	modules: [
 		'@nuxtjs/device',
-		'@nuxt/image-edge',
-		// ['nuxt3-lazy-load', {
-		// 	loadingClass: 'loading',
-		// 	loadedClass: 'loaded',
-		// 	appendClass: false,
-		// }]
+		'@nuxt/image-edge'
 	],
+	image: {
+		dir: "static",
+	},
 	css: ['modern-normalize/modern-normalize.css', '@/assets/styles/global.scss'],
 	vite: {
 		css: {

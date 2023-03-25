@@ -131,7 +131,7 @@ const props = defineProps({
 				letter-spacing: 0.075em;
 
 				&:after {
-					content: url('/images/KM_arrow_long_white.svg');
+					content: url('@/static/images/KM_arrow_long_white.svg');
 					width: 2.75rem;
 					margin-left: 1rem;
 					position: relative;
