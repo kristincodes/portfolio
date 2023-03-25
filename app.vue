@@ -109,7 +109,7 @@ if (process.client) {
       <section>
         <div ref="hiWrap" class="hi-wrap">
           <span>Hi!</span>
-          <img src="@/assets/images/KM_Hand_peace.png" alt="Hand Peace Sign">
+          <img src="~/assets/images/KM_Hand_peace.png" alt="Hand Peace Sign">
         </div>
       </section>
       <footer>
@@ -127,30 +127,30 @@ if (process.client) {
                       desc="Developed a dynamic website using Nuxt and a headless CMS for a construction company, showcasing their services and references with a modern design, responsive layout, and intuitive user interface."
                       :tags="['Nuxt', 'Wordpress', 'REST API', 'Responsive Webdesign', 'Animations']"
                       @click="setOpenPortfolioItem(1)" :open="openPortfolioItem == 1" href="https://kathmann-bau.de/">
-        <img src="@/assets/images/KM_Portfolio_Kath.jpg" alt="Website - Kathmann Bau" />
+        <img src="~/assets/images/KM_Portfolio_Kath.jpg" alt="Website - Kathmann Bau" />
       </portfolio-item>
       <portfolio-item title="oui. studios"
                       desc="Built a responsive and dynamic website for my agency using Nuxt. The website showcases the agency's references and services with engaging animations and transitions. The site is easy to update with new references and case studies."
                       :tags="['Nuxt', 'Wordpress', 'REST API', 'Responsive Webdesign', 'Animations']"
                       @click="setOpenPortfolioItem(2)" :open="openPortfolioItem == 2" href="https://oui-studios.de/">
-        <img src="@/assets/images/KM_portfolio_oui.jpg" alt="Website - oui. studios" />
+        <img src="~/assets/images/KM_portfolio_oui.jpg" alt="Website - oui. studios" />
       </portfolio-item>
       <portfolio-item title="OTC International"
                       desc="Developed a REST API and database for OTC, complete with data batch processing for optimal performance. This has enabled OTC to effortlessly upload large data catalogs via a user-friendly interface and seamlessly integrate this data into their website."
                       :tags="['Node', 'Express', 'MongoDB']" @click="setOpenPortfolioItem(3)"
                       :open="openPortfolioItem == 3" href="https://otc-international.eu/">
-        <img src="@/assets/images/KM_Portfolio_otc.jpg" alt="Website - OTC International" />
+        <img src="~/assets/images/KM_Portfolio_otc.jpg" alt="Website - OTC International" />
       </portfolio-item>
       <portfolio-item class="last" :dev="true" title="DispoWorks"
                       desc="Designed and developed a web application and mobile app for scaffolding companies using Nuxt, Strapi and Ionic. The system simplifies crew and resource management, enabling real-time progress tracking and improved productivity."
                       :tags="['Nuxt', 'Strapi', 'Ionic']" @click="setOpenPortfolioItem(4)" :open="openPortfolioItem == 4">
-        <img src="@/assets/images/KM_Portfolio_dispo.jpg" alt="Web App - DispoWorks" />
+        <img src="~/assets/images/KM_Portfolio_dispo.jpg" alt="Web App - DispoWorks" />
       </portfolio-item>
       <div class="arrow-up">
-        <img src="@/assets/images/KM_arrow_up_white.svg" alt="Arrow Up" />
+        <img src="~/assets/images/KM_arrow_up_white.svg" alt="Arrow Up" />
       </div>
       <div class="arrow-down">
-        <img src="@/assets/images/KM_arrow_down_white.svg" alt="Arrow Down" />
+        <img src="~/assets/images/KM_arrow_down_white.svg" alt="Arrow Down" />
       </div>
       <svg v-if="isDesktop" id="cursor" xmlns="http://www.w3.org/2000/svg" xml:lang="en"
            xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 500 500" :style="{ top: mouseY, left: mouseX }">
