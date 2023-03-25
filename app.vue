@@ -129,27 +129,27 @@ if (process.client) {
                       :tags="['Nuxt', 'Wordpress', 'REST API', 'Responsive Webdesign', 'Animations']"
                       @click="setOpenPortfolioItem(1)" :open="openPortfolioItem == 1" href="https://kathmann-bau.de/">
         <nuxt-img src="/images/KM_Portfolio_Kath.jpg" alt="Website - Kathmann Bau" width="480" height="360" format="webp"
-                  sizes="sm:100vw md:50vw lg:500px xl:1000px" loading="lazy" />
+                  sizes="sm:100vw md:50vw lg:500px xl:1000px" />
       </portfolio-item>
       <portfolio-item title="oui. studios"
                       desc="Built a responsive and dynamic website for my agency using Nuxt. The website showcases the agency's references and services with engaging animations and transitions. The site is easy to update with new references and case studies."
                       :tags="['Nuxt', 'Wordpress', 'REST API', 'Responsive Webdesign', 'Animations']"
                       @click="setOpenPortfolioItem(2)" :open="openPortfolioItem == 2" href="https://oui-studios.de/">
         <nuxt-img src="/images/KM_portfolio_oui.jpg" alt="Website - oui. studios" width="480" height="360" format="webp"
-                  sizes="sm:100vw md:50vw lg:500px xl:1000px" loading="lazy" />
+                  sizes="sm:100vw md:50vw lg:500px xl:1000px" />
       </portfolio-item>
       <portfolio-item title="OTC International"
                       desc="Developed a REST API and database for OTC, complete with data batch processing for optimal performance. This has enabled OTC to effortlessly upload large data catalogs via a user-friendly interface and seamlessly integrate this data into their website."
                       :tags="['Node', 'Express', 'MongoDB']" @click="setOpenPortfolioItem(3)"
                       :open="openPortfolioItem == 3" href="https://otc-international.eu/">
         <nuxt-img src="/images/KM_Portfolio_otc.jpg" alt="Website - OTC International" width="480" height="360"
-                  format="webp" sizes="sm:100vw md:50vw lg:500px xl:1000px" loading="lazy" />
+                  format="webp" sizes="sm:100vw md:50vw lg:500px xl:1000px" />
       </portfolio-item>
       <portfolio-item class="last" :dev="true" title="DispoWorks"
                       desc="Designed and developed a web application and mobile app for scaffolding companies using Nuxt, Strapi and Ionic. The system simplifies crew and resource management, enabling real-time progress tracking and improved productivity."
                       :tags="['Nuxt', 'Strapi', 'Ionic']" @click="setOpenPortfolioItem(4)" :open="openPortfolioItem == 4">
         <nuxt-img src="/images/KM_Portfolio_dispo.jpg" alt="Web App - DispoWorks" width="480" height="360" format="webp"
-                  sizes="sm:100vw md:50vw lg:500px xl:1000px" loading="lazy" />
+                  sizes="sm:100vw md:50vw lg:500px xl:1000px" />
       </portfolio-item>
       <div class="arrow-up">
         <nuxt-img src="/images/KM_arrow_up_white.svg" alt="Arrow Up" width="16" height="15" />
