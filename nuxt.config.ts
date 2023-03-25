@@ -1,6 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-	ssr: false,
 	app: {
 		head: {
 			title: 'Kristin Meyer – Full-Stack Web Developer',
@@ -26,5 +25,8 @@ export default defineNuxtConfig({
 				}
 			}
 		}
-	}
+	},
+	nitro: {
+		preset: 'vercel-edge',
+	},
 })
