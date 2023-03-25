@@ -76,22 +76,10 @@ onMounted(() => {
   }, 700)
 })
 
-const ie = ref(false)
-
-if (process.client) {
-  const isIE = () => {
-    var userAgent = navigator.userAgent;
-    return /MSIE|Trident/.test(userAgent);
-  }
-
-  ie.value = isIE()
-
-  console.log('Hi!✌🏻')
-}
 </script>
 
 <template>
-  <div v-if="!ie" class="page-wrap">
+  <div class="page-wrap">
     <main :class="{ done: revealDone }">
       <header>
         <h1>Kristin Meyer</h1>
@@ -110,7 +98,7 @@ if (process.client) {
         <div ref="hiWrap" class="hi-wrap">
           <span>Hi!</span>
           <nuxt-img src="/images/KM_Hand_peace.png" alt="Hand Peace Sign" width="317" height="313" format="webp"
-                    sizes="sm:100vw md:50vw lg:800px xl:1500px" loading="lazy" />
+                    sizes="sm:100vw md:50vw lg:800px xl:1500px" />
         </div>
       </section>
       <footer>
@@ -176,8 +164,9 @@ if (process.client) {
       <span class="reveal-count" :class="{ show: revealCount == 1 }">1</span>
     </div>
   </div>
-  <div v-else class="ie">
-    Bold browser choice.
+  <div class="ie">
+    <img src="/images/KM_Hand_peace.png" alt="Hand Peace Sign" width="317" height="313" /><br>
+    Bold browser choice. Maybe try something from this decade.
   </div>
 </template>
 
@@ -189,9 +178,15 @@ if (process.client) {
     flex-direction: column;
   }
 
+  @media screen and (-ms-high-contrast: active),
+  (-ms-high-contrast: none) {
+    display: none !important;
+  }
+
   main {
     padding: 4rem;
     height: 100vh;
+    height: 100dvh;
     width: 100%;
     margin-right: -33.33333333%;
     display: flex;
@@ -233,6 +228,10 @@ if (process.client) {
       align-items: center;
       justify-content: space-between;
 
+      @media only screen and (max-width: 500px) {
+        align-items: start;
+      }
+
       h1 {
         font-size: 1.25rem;
         line-height: 1;
@@ -246,6 +245,13 @@ if (process.client) {
           gap: 2rem;
           list-style: none;
           margin: 0;
+
+          @media only screen and (max-width: 500px) {
+            margin-top: 0.25rem;
+            flex-direction: column-reverse;
+            gap: 1rem;
+            align-items: flex-end;
+          }
 
           li {
             line-height: 1;
@@ -393,6 +399,11 @@ if (process.client) {
       justify-content: center;
       z-index: 1;
       mix-blend-mode: difference;
+      transition: all 0.5s cubic-bezier(.02, .01, .47, 1);
+
+      @media only screen and (max-width: 1200px) {
+        right: 2rem;
+      }
 
       @media only screen and (max-width: 900px) {
         display: none;
@@ -406,10 +417,18 @@ if (process.client) {
 
     .arrow-up {
       top: 4rem;
+
+      @media only screen and (max-width: 1200px) {
+        top: 2rem;
+      }
     }
 
     .arrow-down {
       bottom: 4rem;
+
+      @media only screen and (max-width: 1200px) {
+        bottom: 2rem;
+      }
     }
 
     svg#cursor {
@@ -498,8 +517,23 @@ if (process.client) {
 }
 
 .ie {
-  padding: 50px;
+  padding: 200px 50px;
   text-align: center;
   font-size: 20px;
+  display: none;
+  background: $black;
+  color: $white;
+
+  img {
+    display: inline-block;
+    width: 200px;
+    height: auto;
+    margin-bottom: 50px;
+  }
+
+  @media screen and (-ms-high-contrast: active),
+  (-ms-high-contrast: none) {
+    display: block;
+  }
 }
 </style>

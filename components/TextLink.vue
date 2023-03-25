@@ -73,6 +73,10 @@ const props = defineProps({
 		text-decoration: none;
 		position: relative;
 
+		@media (hover:none) {
+			margin-right: 1rem;
+		}
+
 		span {
 			position: relative;
 		}
@@ -95,6 +99,12 @@ const props = defineProps({
 			z-index: 1;
 			opacity: 0;
 			transition: opacity 0.35s ease 0.7s;
+
+			@media (hover:none) {
+				content: url('/images/KM_arrow_forward_black.svg');
+				opacity: 1;
+				width: 0.7rem;
+			}
 		}
 	}
 }

@@ -31,6 +31,9 @@ const props = defineProps({
 	<div class="portfolio-item">
 		<div class="image-wrap" :class="{ open }">
 			<slot />
+			<div class="plus">
+				<nuxt-img src="/images/KM_arrow_plus_white.svg" alt="Arrow Up" width="16" height="15" />
+			</div>
 		</div>
 		<div class="info">
 			<div class="tags">
@@ -80,6 +83,23 @@ const props = defineProps({
 		&.open {
 			left: 100%;
 		}
+
+		.plus {
+			position: absolute;
+			left: 2rem;
+			bottom: 2rem;
+			opacity: 0;
+			transition: all 0.5s cubic-bezier(.02, .01, .47, 1);
+
+			img {
+				width: 0.95rem;
+				height: auto;
+			}
+
+			@media (hover:none) {
+				opacity: 1;
+			}
+		}
 	}
 
 
@@ -125,7 +145,7 @@ const props = defineProps({
 				color: $white;
 				text-decoration: none;
 				position: relative;
-				display: flex;
+				display: inline-flex;
 				justify-content: flex-star;
 				align-items: center;
 				letter-spacing: 0.075em;
