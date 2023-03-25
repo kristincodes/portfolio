@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+	ssr: true,
 	app: {
 		head: {
 			title: 'Kristin Meyer – Full-Stack Web Developer',
@@ -12,9 +13,6 @@ export default defineNuxtConfig({
 		'@nuxtjs/device',
 		'@nuxt/image-edge'
 	],
-	image: {
-		dir: "static",
-	},
 	css: ['modern-normalize/modern-normalize.css', '@/assets/styles/global.scss'],
 	vite: {
 		css: {
@@ -24,8 +22,5 @@ export default defineNuxtConfig({
 				}
 			}
 		}
-	},
-	nitro: {
-		preset: 'vercel-edge',
-	},
+	}
 })
